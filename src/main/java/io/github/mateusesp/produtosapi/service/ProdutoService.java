@@ -6,6 +6,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -38,5 +39,9 @@ public class ProdutoService {
             p.setNome(produto.getNome());
             p.setPreco(produto.getPreco());
         });
+    }
+
+    public List<Produto> findAll(String nome) {
+        return produtoRepository.findByNome(nome);
     }
 }

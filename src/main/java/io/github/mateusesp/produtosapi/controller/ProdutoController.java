@@ -4,6 +4,7 @@ import io.github.mateusesp.produtosapi.model.Produto;
 import io.github.mateusesp.produtosapi.service.ProdutoService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -14,6 +15,11 @@ public class ProdutoController {
 
     public ProdutoController(ProdutoService produtoService) {
         this.produtoService = produtoService;
+    }
+
+    @GetMapping
+    public List<Produto> findAll(@RequestParam("nome") String nome) {
+        return produtoService.findAll(nome);
     }
 
     @GetMapping(path = "{id}")
