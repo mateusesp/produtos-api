@@ -25,7 +25,10 @@ public class ProdutoService {
     }
 
     public Produto findById(UUID id) {
-
         return produtoRepository.findById(id).orElse(null);
+    }
+
+    public void delete(UUID id) {
+        produtoRepository.deleteById(id);
     }
 }

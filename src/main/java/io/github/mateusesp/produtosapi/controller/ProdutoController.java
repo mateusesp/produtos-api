@@ -26,4 +26,9 @@ public class ProdutoController {
         System.out.println("Produto recebido: " + produto);
         return produtoService.save(produto);
     }
+
+    @DeleteMapping(path = "{id}")
+    public void delete(@PathVariable(name = "id") UUID id) {
+        produtoService.delete(id);
+    }
 }
