@@ -31,4 +31,12 @@ public class ProdutoService {
     public void delete(UUID id) {
         produtoRepository.deleteById(id);
     }
+
+    public void update(UUID id, Produto produto) {
+        produtoRepository.findById(id).ifPresent(p -> {
+            p.setDescricao(produto.getDescricao());
+            p.setNome(produto.getNome());
+            p.setPreco(produto.getPreco());
+        });
+    }
 }

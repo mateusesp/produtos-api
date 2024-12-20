@@ -27,6 +27,12 @@ public class ProdutoController {
         return produtoService.save(produto);
     }
 
+    @PutMapping(path = "{id}")
+    public void update(@PathVariable(name = "id") UUID id,
+                       @RequestBody Produto produto) {
+        produtoService.update(id, produto);
+    }
+
     @DeleteMapping(path = "{id}")
     public void delete(@PathVariable(name = "id") UUID id) {
         produtoService.delete(id);
