@@ -1,18 +1,29 @@
 package io.github.mateusesp.produtosapi.controller;
 
 import io.github.mateusesp.produtosapi.model.Produto;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import io.github.mateusesp.produtosapi.service.ProdutoService;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping(path = "/api/v1/produtos")
 public class ProdutoController {
 
+    private final ProdutoService produtoService;
+
+    public ProdutoController(ProdutoService produtoService) {
+        this.produtoService = produtoService;
+    }
+
+    @GetMapping(path = "{id}")
+    public Produto findById(@PathVariable(name = "id") UUID id) {
+        return produtoService.findById(id);
+    }
+
     @PostMapping
     public Produto save(@RequestBody Produto produto) {
         System.out.println("Produto recebido: " + produto);
-        return produto;
+        return produtoService.save(produto);
     }
 }
